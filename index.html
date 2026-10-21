@@ -1,45 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prinsora HR Consulting Services - Payroll & HR</title>
-<script src="https://jsdelivr.net"></script>
-<style>
-:root{--gold:#c8a34d;--black:#171717;--line:#e2e4e8;--muted:#68707c;--bg:#f5f6f8;--red:#a52323;--green:#176b3a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--black);font:14px Arial,sans-serif}
-header{background:var(--black);color:white;border-bottom:4px solid var(--gold);padding:18px max(16px,calc((100% - 1180px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-header h1{margin:0;font-size:22px}header small{color:var(--gold);letter-spacing:1px}.wrap{max-width:1180px;margin:22px auto;padding:0 14px}
-.card{background:white;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}.hidden{display:none!important}
-label{display:block;font-weight:bold;font-size:12px;color:#414650;margin-bottom:10px}input,select,textarea{display:block;width:100%;padding:10px;border:1px solid #cfd3d9;border-radius:6px;margin-top:5px;font:14px Arial;background:white}
-button{border:0;border-radius:6px;padding:10px 13px;background:var(--gold);font-weight:bold;cursor:pointer;margin:3px}button.dark{background:var(--black);color:white}button.danger{background:#f6dddd;color:var(--red)}button:disabled{opacity:.55;cursor:wait}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tabs button{background:#e4e6e9}.tabs button.active{background:var(--gold)}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}th{background:#f2f3f5}.scroll{overflow:auto}.notice{background:#fff7df;border:1px solid #e7d39a;padding:12px;border-radius:7px;line-height:1.5;margin-bottom:14px}.muted{color:var(--muted)}.status{padding:10px;border-radius:6px;margin:10px 0;white-space:pre-wrap}.ok{background:#e4f5e9;color:var(--green)}.err{background:#fde9e9;color:var(--red)}.stat{padding:14px;background:#f7f7f7;border-radius:8px}.stat b{font-size:22px;display:block;margin-top:5px}.right{float:right}.small{font-size:12px}
-@media print{header,.tabs,button,.no-print,#login{display:none!important}body{background:white}.card{border:0}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Monthly Payslip Notification</title>
+  <style>
+    body { background-color: #f5f6f8; font-family: Arial, sans-serif; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; width: 100% !important; }
+    table { border-collapse: collapse; width: 100%; }
+    .wrapper { background-color: #f5f6f8; padding: 20px; text-align: center; }
+    .container { background-color: #ffffff; border: 1px solid #e2e4e8; border-radius: 8px; max-width: 600px; margin: 0 auto; overflow: hidden; text-align: left; }
+    .header { background-color: #171717; border-bottom: 4px solid #c8a34d; padding: 24px; text-align: center; }
+    .header small { color: #c8a34d; display: block; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; }
+    .header h1 { color: #ffffff; font-size: 20px; margin: 0; }
+    .content { padding: 30px 24px; }
+    .content h2 { color: #171717; font-size: 18px; margin-top: 0; margin-bottom: 15px; }
+    .content p { color: #414650; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0; }
+    .summary-card { background-color: #f7f7f7; border: 1px solid #e2e4e8; border-radius: 6px; margin-bottom: 24px; padding: 16px; }
+    .summary-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; border-bottom: 1px dashed #e2e4e8; }
+    .summary-row:last-child { border-bottom: none; padding-top: 10px; font-weight: bold; font-size: 16px; color: #176b3a; }
+    .summary-label { color: #68707c; }
+    .summary-value { color: #171717; text-align: right; }
+    .button-container { text-align: center; margin-top: 10px; margin-bottom: 25px; }
+    .btn { background-color: #c8a34d; border-radius: 6px; color: #171717 !important; display: inline-block; font-size: 14px; font-weight: bold; padding: 12px 24px; text-decoration: none; }
+    .footer { background-color: #f5f6f8; padding: 20px; text-align: center; font-size: 12px; color: #68707c; border-top: 1px solid #e2e4e8; }
+    .footer p { margin: 4px 0; }
+  </style>
 </head>
 <body>
-<header><div><small>PRINSORA GROUP</small><h1>Payroll & HR Management</h1><div class="small">Elevating Standards.</div></div><div id="header-actions" class="hidden"><span id="who"></span><button id="signout" class="dark">Sign out</button></div></header>
-<main class="wrap">
-<div class="notice"><b>Administrator-only workspace.</b> Employees and client companies do not have login accounts. Use only for authorised administration. This starter supports company and employee records, payroll drafts, automatic estimated PAYE, payroll drafts, and printable payroll summaries. Confirm Nigerian statutory calculations and data security before production use.</div>
-<section id="login" class="card"><h2>Administrator sign in</h2><p class="muted">Sign in using the administrator account already created in your Supabase project.</p><form id="login-form" class="grid"><label>Email<input id="login-email" type="email" required autocomplete="username"></label><label>Password<input id="login-password" type="password" required autocomplete="current-password"></label><div><button class="dark" type="submit">Sign in</button></div></form><div id="login-msg" class="status hidden"></div></section>
-<section id="app" class="hidden">
-<div id="msg" class="status hidden"></div>
-<div class="grid">
-<div class="stat">Companies<b id="stat-companies">0</b></div><div class="stat">Employees<b id="stat-employees">0</b></div><div class="stat">Payroll drafts<b id="stat-drafts">0</b></div>
-</div>
-<div class="tabs" style="margin-top:15px"><button data-tab="companies" class="active">Companies</button><button data-tab="employees">Employees</button><button data-tab="payroll">Payroll</button><button data-tab="leave">Leave records</button></div>
-<section id="tab-companies" class="panel">
-<div class="card"><h2>Add / update company</h2><form id="company-form"><input id="company-id" type="hidden"><div class="grid">
-<label>Company name *<input id="company-name" required maxlength="160"></label><label>Registration / tax reference<input id="company-ref" maxlength="100"></label><label>Contact email<input id="company-email" type="email"></label><label>Phone<input id="company-phone"></label><label>Address<input id="company-address"></label><label>Proration method<select id="company-proration"><option value="calendar_days">Calendar days</option><option value="working_days">Working days (Mon–Fri)</option><option value="fixed_30_days">Fixed 30-day month</option></select></label><label>Status<select id="company-active"><option value="true">Active</option><option value="false">Inactive</option></select></label></div><button class="dark">Save company</button><button type="button" id="company-reset">Clear</button></form></div>
-<div class="card"><h2>Registered companies</h2><div class="scroll"><table><thead><tr><th>Company</th><th>Reference</th><th>Contact</th><th>Proration</th><th>Status</th><th>Actions</th></tr></thead><tbody id="companies-body"></tbody></table></div></div>
-</section>
-<section id="tab-employees" class="panel hidden">
-<div class="card"><h2>Add / update employee</h2><form id="employee-form"><input id="employee-id" type="hidden"><div class="grid">
-<label>Company *<select id="employee-company" required></select></label><label>Employee number *<input id="employee-number" required maxlength="40"></label><label>Full name *<input id="employee-name" required maxlength="160"></label><label>Email<input id="employee-email" type="email"></label><label>Department<input id="employee-department"></label><label>Job title<input id="employee-title"></label><label>Basic salary / month (₦)<input id="employee-basic" type="number" min="0" step=".01" value="0" required></label><label>Housing allowance / month (₦)<input id="employee-housing" type="number" min="0" step=".01" value="0"></label><label>Transport allowance / month (₦)<input id="employee-transport" type="number" min="0" step=".01" value="0"></label><label>Other allowance / month (₦)<input id="employee-other" type="number" min="0" step=".01" value="0"></label><label>Employee pension applies?<select id="employee-pension"><option value="true">Yes</option><option value="false">No</option></select></label><label>PAYE applies?<select id="employee-paye"><option value="true">Yes</option><option value="false">No</option></select></label><label>Employment start date<input id="employee-start-date" type="date"></label><label>Employment end date (optional)<input id="employee-end-date" type="date"></label><label>Status<select id="employee-status"><option value="active">Active</option><option value="inactive">Inactive</option></select></label></div><button class="dark">Save employee</button><button type="button" id="employee-reset">Clear</button></form></div>
-<div class="card"><h2>Employees</h2><div class="grid"><label>Filter by company<select id="employee-filter"></select></label><label>Search<input id="employee-search" placeholder="Name, employee number, department"></label></div><div class="scroll"><table><thead><tr><th>Company</th><th>Employee</th><th>Department / title</th><th>Employment dates</th><th>Monthly salary package</th><th>Status</th><th>Actions</th></tr></thead><tbody id="employees-body"></tbody></table></div></div>
-</section>
-<section id="tab-payroll" class="panel hidden">
-<div class="card"><h2>Create payroll draft</h2><p class="muted">Select company and month. The system prorates salary using the method configured for that company (calendar days, Monday–Friday working days, or fixed 30-day month) and estimates PAYE using standard progressive bands incorporating statutory CRA. It supports employee pension, optional NHF and NHIS, life insurance, qualifying mortgage interest, rent relief, employer pension, and employer-funded NSITF. Confirm eligibility and actual remittances; review all figures before approval. NSITF is employer-funded and is not deducted from employee net pay.</p><form id="payroll-form"><div class="grid"><label>Company *<select id="payroll-company" required></select></label><label>Payroll month *<input id="payroll-month" type="month" required></label><label>Employee pension rate (%)<input id="pension-rate" type="number" min="0" max="100" step=".1" value="8" required></label><label>Employer pension rate (%)<input id="employer-pension-rate" type="number" min="0" max="100" step=".1" value="10" required></label><label>NSITF employer rate (%)<input id="nsitf-rate" type="number" min="0" max="100" step=".1" value="1" required></label></div><button type="button" id="preview-payroll" class="dark">Load payroll preview</button><button type="submit" id="save-payroll">Save draft</button></form><div id="payroll-preview" class="scroll"></div></div>
-<div class="card"><h2>Saved payroll runs</h2><div class="scroll"><table><thead><tr><th>Month</th><th>Company</th><th>Employees</th><th>Gross total</th><th>Net total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="payroll-body"></tbody></table></div></div>
-</section>
-<section id="tab-leave" class="panel hidden">
+  <table role="presentation" class="wrapper">
+    <tr>
+      <td>
+        <div class="container">
+          <!-- Header Banner Section -->
+          <div class="header">
+            <small>PRINSORA GROUP</small>
+            <h1>Payroll & HR Services</h1>
+          </div>
+          
+          <!-- Core Message Section -->
+          <div class="content">
+            <h2>Hello {{EmployeeName}},</h2>
+            <p>Your official payroll summary and payslip for the month of <strong>{{PayrollMonth}}</strong> have been compiled and processed by HR.</p>
+            
+            <!-- Compact Take-home Summary Card -->
+            <div class="summary-card">
+              <div class="summary-row">
+                <span class="summary-label">Gross Salary:</span>
+                <span class="summary-value">{{GrossPay}}</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Total Deductions (Tax & Pension):</span>
+                <span class="summary-value">{{TotalDeductions}}</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Net Take-Home Pay:</span>
+                <span class="summary-value">{{NetPay}}</span>
+              </div>
+            </div>
+            
+            <p>You can view, download, or save your comprehensive statutory itemized statement as a PDF file by logging directly into your company profile portal dashboard.</p>
+            
+            <!-- Main Interactive Action Target Link -->
+            <div class="button-container">
+              <a href="{{PortalUrl}}" class="btn" target="_blank">Access Employee Portal</a>
+            </div>
+            
+            <p style="font-size: 12px; color: #68707c; font-style: italic;">Note: This is an automatically generated corporate transmission. If you detect any visual discrepancies or have structural questions regarding your statutory deductions, please lodge an internal inquiry ticket with your assigned HR Operations representative.</p>
+          </div>
+          
+          <!-- Confidentiality and Disclaimer Footer Section -->
+          <div class="footer">
+            <p><strong>Prinsora HR Consulting Services</strong></p>
+            <p>Elevating Standards.</p>
+            <p style="font-size: 11px; margin-top: 12px;">This communication contains highly confidential payroll metrics meant solely for the specified recipient. Distribution or duplication is strictly forbidden.</p>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
