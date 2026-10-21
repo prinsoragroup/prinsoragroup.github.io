@@ -447,19 +447,40 @@
   <a class="whatsapp" href="https://wa.me/2347036937363" target="_blank" rel="noopener noreferrer" aria-label="Chat with Prinsora Group on WhatsApp">WhatsApp Us</a>
 
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('#main-nav');
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mainNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const SUPABASE_URL='https://supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_8SImxCnIpZcFTWQOBNnMBw_d_hfo40F';
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:2}).format(Number(n)||0);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let client,profile,companies=[],employees=[],runs=[],leaveRecords=[],previewRows=[];
+function message(text,error=false,target='msg'){const el=$(target);el.textContent=text;el.className='status '+(error?'err':'ok');el.classList.remove('hidden');}
+function clearMessage(target='msg'){$(target).classList.add('hidden')}
+function adminOnly(){if(profile?.role!=='admin'){message('Administrator permission required.',true);return false}return true}
+function initClient(){if(!window.supabase){throw new Error('Supabase library failed to load. Check internet connection.')}if(SUPABASE_PUBLISHABLE_KEY.startsWith('PASTE_'))throw new Error('Add your Supabase publishable key in the HTML configuration before deployment.');client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);}
+async function getProfile(){const {data:{user},error}=await client.auth.getUser();if(error||!user)throw new Error('Please sign in again.');const {data,error:e}=await client.from('user_profiles').select('user_id,full_name,role').eq('user_id',user.id).single();if(e)throw e;if(data.role!=='admin')throw new Error('This portal is restricted to authorised administrators.');profile=data;$('who').textContent=data.full_name||user.email;}
+async function boot(){try{await getProfile();$('login').classList.add('hidden');$('app').classList.remove('hidden');$('header-actions').classList.remove('hidden');await refreshAll()}catch(e){await client.auth.signOut();$('login').classList.remove('hidden');$('app').classList.add('hidden');message(e.message||'Sign-in failed',true,'login-msg')}}
+async function rows(table,select='*',order='created_at'){let q=client.from(table).select(select);if(order)q=q.order(order,{ascending:false});const {data,error}=await q;if(error)throw error;return data||[]}
+async function refreshAll(){try{[companies,employees,runs,leaveRecords]=await Promise.all([rows('organizations','*','name'),rows('employees','*','full_name'),rows('payroll_runs','*,organizations(name),payroll_items(id,gross_pay,net_pay)','payroll_month'),rows('leave_records','*,organizations(name),employees(full_name)','start_date')]);renderAll()}catch(e){message('Could not load data: '+e.message,true)}}
+function companyOptions(sel,chosen='',includeAll=false){let options=includeAll?'<option value="">All companies</option>':'';options+=companies.map(c=>`<option value="${c.id}" ${c.id===chosen?'selected':''}>${esc(c.name)}</option>`).join('');$(sel).innerHTML=options}
+function renderAll(){ $('stat-companies').textContent=companies.length;$('stat-employees').textContent=employees.length;$('stat-drafts').textContent=runs.filter(r=>r.status==='draft').length;
+companyOptions('employee-company');companyOptions('employee-filter','',true);companyOptions('payroll-company');companyOptions('leave-company');
+$('companies-body').innerHTML=companies.map(c=>`<tr><td><b>${esc(c.name)}</b><br><small>${esc(c.address||'')}</small></td><td>${esc(c.registration_ref||'—')}</td><td>${esc(c.contact_email||'—')}<br>${esc(c.phone||'')}</td><td>${esc(({calendar_days:'Calendar days',working_days:'Working days (Mon–Fri)',fixed_30_days:'Fixed 30-day month'})[c.proration_method]||'Calendar days')}</td><td>${c.is_active?'Active':'Inactive'}</td><td><button onclick="editCompany('${c.id}')">Edit</button><button class="danger" onclick="toggleCompany('${c.id}',${!c.is_active})">${c.is_active?'Deactivate':'Activate'}</button></td></tr>`).join('')||'<tr><td colspan="6">No companies yet. Add your first company above.</td></tr>';
+renderEmployees();renderRuns();renderLeave();refreshLeaveEmployees();}
+function renderEmployees(){let filter=$('employee-filter').value||'',search=($('employee-search').value||'').toLowerCase();let list=employees.filter(e=>(!filter||e.organization_id===filter)&&[e.full_name,e.employee_number,e.department,e.job_title].some(x=>(x||'').toLowerCase().includes(search)));$('employees-body').innerHTML=list.map(e=>{let c=companies.find(x=>x.id===e.organization_id);return `<tr><td>${esc(c?.name||'Unknown')}</td><td><b>${esc(e.full_name)}</b><br>${esc(e.employee_number)}<br><small>${esc(e.email||'')}</small></td><td>${esc(e.department||'—')}<br>${esc(e.job_title||'')}</td><td>${esc(e.employment_start_date||'Not set')} – ${esc(e.employment_end_date||'No end date')}</td><td>${money(Number(e.basic_salary)+Number(e.housing_allowance)+Number(e.transport_allowance)+Number(e.other_allowances))}</td><td>${esc(e.employment_status)}</td><td><button onclick="editEmployee('${e.id}')">Edit</button><button class="danger" onclick="toggleEmployee('${e.id}','${e.employment_status==='active'?'inactive':'active'}')">${e.employment_status==='active'?'Deactivate':'Activate'}</button></td></tr>`}).join('')||'<tr><td colspan="7">No matching employees.</td></tr>'}
+function renderRuns(){$('payroll-body').innerHTML=runs.map(r=>{let items=r.payroll_items||[];return `<tr><td>${esc(String(r.payroll_month).slice(0,7))}</td><td>${esc(r.organizations?.name||'')}</td><td>${items.length}</td><td>${money(items.reduce((s,i)=>s+Number(i.gross_pay||0),0))}</td><td>${money(items.reduce((s,i)=>s+Number(i.net_pay||0),0))}</td><td>${esc(r.status)}</td><td><button onclick="viewRun('${r.id}')">View / print</button>${r.status==='draft'?`<button onclick="approveRun('${r.id}')">Approve</button>`:''}</td></tr>`}).join('')||'<tr><td colspan="7">No payroll runs yet.</td></tr>'}
+function renderLeave(){$('leave-body').innerHTML=leaveRecords.map(r=>`<tr><td>${esc(r.organizations?.name||'')}</td><td>${esc(r.employees?.full_name||'')}</td><td>${esc(r.leave_type)}</td><td>${esc(r.start_date)} – ${esc(r.end_date)}</td><td><select onchange="setLeaveStatus('${r.id}',this.value)"><option ${r.status==='pending'?'selected':''}>pending</option><option ${r.status==='approved'?'selected':''}>approved</option><option ${r.status==='rejected'?'selected':''}>rejected</option><option ${r.status==='completed'?'selected':''}>completed</option></select></td><td><button class="danger" onclick="deleteRow('leave_records','${r.id}','leave record')">Delete</button></td></tr>`).join('')||'<tr><td colspan="6">No leave records.</td></tr>'}
+function refreshLeaveEmployees(){let c=$('leave-company').value;let arr=employees.filter(e=>e.employment_status==='active'&&(!c||e.organization_id===c));$('leave-employee').innerHTML=arr.map(e=>`<option value="${e.id}">${esc(e.employee_number)} — ${esc(e.full_name)}</option>`).join('')}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('hidden',x.id!=='tab-'+b.dataset.tab))}));
+$('login-form').addEventListener('submit',async e=>{e.preventDefault();try{initClient();const {error}=await client.auth.signInWithPassword({email:$('login-email').value,password:$('login-password').value});if(error)throw error;await boot()}catch(e){message(e.message||'Sign-in failed',true,'login-msg')}});
+$('signout').onclick=async()=>{await client.auth.signOut();location.reload()};
+function clearCompany(){$('company-form').reset();$('company-id').value='';$('company-active').value='true';$('company-proration').value='calendar_days'}
+$('company-reset').onclick=clearCompany;
+$('company-form').onsubmit=async e=>{e.preventDefault();if(!adminOnly())return;const id=$('company-id').value,p={name:$('company-name').value.trim(),registration_ref:$('company-ref').value.trim()||null,contact_email:$('company-email').value.trim()||null,phone:$('company-phone').value.trim()||null,address:$('company-address').value.trim()||null,is_active:$('company-active').value==='true',proration_method:$('company-proration').value};try{const q=id?client.from('organizations').update(p).eq('id',id):client.from('organizations').insert(p);const {error}=await q;if(error)throw error;clearCompany();await refreshAll();message('Company saved.')}catch(e){message(e.message,true)}};
+window.editCompany=id=>{let c=companies.find(x=>x.id===id);if(!c)return;$('company-id').value=c.id;$('company-name').value=c.name;$('company-ref').value=c.registration_ref||'';$('company-email').value=c.contact_email||'';$('company-phone').value=c.phone||'';$('company-address').value=c.address||'';$('company-active').value=String(c.is_active);$('company-proration').value=c.proration_method||'calendar_days'};
+window.toggleCompany=async(id,val)=>{if(!confirm('Change company active status? Existing records will be retained.'))return;const {error}=await client.from('organizations').update({is_active:val}).eq('id',id);if(error)message(error.message,true);else{await refreshAll();message('Company status updated.')}};
+function clearEmployee(){$('employee-form').reset();$('employee-id').value='';$('employee-basic').value=0;$('employee-housing').value=0;$('employee-transport').value=0;$('employee-other').value=0}
+$('employee-reset').onclick=clearEmployee;
+
   </script>
 </body>
 </html>
