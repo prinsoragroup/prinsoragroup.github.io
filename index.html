@@ -4,462 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prinsora Group | HR Consulting, Recruitment & Workforce Solutions</title>
-  <meta name="description" content="Prinsora HR Consulting Services helps businesses attract talent, strengthen their workforce and improve organisational performance through recruitment, HR consulting, staffing and workforce support in Nigeria.">
-  <meta name="keywords" content="HR consulting Nigeria, recruitment agency Nigeria, talent acquisition, staffing, workforce outsourcing, HR services Abuja, Prinsora HR Consulting Services">
-  <meta name="author" content="Prinsora Group">
-  <meta property="og:title" content="Prinsora Group | HR Consulting & Recruitment">
-  <meta property="og:description" content="Recruitment, HR consulting and workforce solutions, supported by integrated business services.">
-  <meta property="og:image" content="preview.jpeg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://prinsoragroup.github.io">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Prinsora Group | HR Consulting & Recruitment">
-  <meta name="twitter:description" content="Recruitment, HR consulting and workforce solutions, supported by integrated business services.">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Prinsora HR Consulting Services helps businesses attract talent, strengthen their workforce and improve organisational performance.">
+  <link href="https://googleapis.com" rel="stylesheet">
   <style>
     :root {
-      --gold: #d6ad45;
-      --gold-light: #f2d98c;
-      --black: #111111;
-      --ink: #222222;
-      --muted: #666666;
-      --paper: #ffffff;
-      --soft: #f7f6f2;
-      --line: #e8e2d3;
-      --radius: 16px;
-      --shadow: 0 12px 34px rgba(0,0,0,.08);
+      --gold: #d6ad45; --gold-light: #f2d98c; --black: #111; --ink: #222;
+      --muted: #666; --paper: #fff; --soft: #f7f6f2; --line: #e8e2d3;
+      --radius: 16px; --shadow: 0 12px 34px rgba(0,0,0,.08);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body { margin: 0; font-family: 'Poppins', sans-serif; color: var(--ink); line-height: 1.7; background: var(--paper); }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
     .container { width: min(1120px, 92%); margin: 0 auto; }
     .topbar { background: var(--black); color: #f5f5f5; font-size: .82rem; padding: 8px 0; }
-    .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
-    .topbar a:hover { color: var(--gold-light); }
-    header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,.97); border-bottom: 1px solid rgba(214,173,69,.25); backdrop-filter: blur(10px); }
-    .nav-wrap { min-height: 78px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 170px; }
-    .brand img { width: 52px; height: 52px; object-fit: contain; }
-    .brand-name { font-weight: 800; letter-spacing: .5px; color: var(--black); line-height: 1.2; }
-    .brand-name span { display: block; font-size: .67rem; color: #8c6b1e; font-weight: 500; letter-spacing: 1.5px; margin-top: 4px; }
-    nav { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-    nav a { font-size: .82rem; font-weight: 600; transition: color .2s; }
-    nav a:hover { color: #9a741d; }
-    .menu-toggle { display: none; border: 1px solid var(--line); background: white; padding: 8px 12px; border-radius: 8px; font: inherit; }
-    .hero { color: white; background: radial-gradient(circle at 80% 20%, rgba(214,173,69,.23), transparent 30%), linear-gradient(125deg, #101010 0%, #191919 64%, #292216 100%); padding: 88px 0 82px; position: relative; overflow: hidden; }
-    .hero::after { content: ""; position: absolute; right: -110px; bottom: -220px; width: 460px; height: 460px; border: 1px solid rgba(214,173,69,.2); border-radius: 50%; box-shadow: 0 0 0 35px rgba(214,173,69,.035), 0 0 0 75px rgba(214,173,69,.025); }
-    .hero-content { max-width: 800px; position: relative; z-index: 1; }
-    .eyebrow { display: inline-block; color: var(--gold-light); text-transform: uppercase; letter-spacing: 2px; font-size: .78rem; font-weight: 700; margin-bottom: 14px; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { font-size: clamp(2.25rem, 5vw, 4.25rem); line-height: 1.14; margin-bottom: 22px; letter-spacing: -.8px; }
-    h1 .gold { color: var(--gold-light); }
-    .hero p { max-width: 720px; color: #e3e3e3; font-size: 1.02rem; margin-bottom: 28px; }
-    .hero .brand-note { font-size: .86rem; color: #c9c9c9; margin: 28px 0 0; }
-    .button-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-weight: 700; font-size: .9rem; border: 1px solid transparent; transition: transform .2s, background .2s; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--gold); color: #17130a; }
-    .btn-primary:hover { background: var(--gold-light); }
-    .btn-outline { border-color: rgba(255,255,255,.55); color: white; }
-    .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+    .topbar-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,.97); border-bottom: 1px solid rgba(214,173,69,.25); }
+    .nav-wrap { min-height: 78px; display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .hero { color: white; background: linear-gradient(125deg, #101010 0%, #191919 64%, #292216 100%); padding: 88px 0 82px; }
     section { padding: 76px 0; }
-    .section-heading { max-width: 760px; margin: 0 auto 38px; text-align: center; }
-    .section-heading .eyebrow { color: #96701b; margin-bottom: 8px; }
-    h2 { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.25; color: var(--black); margin-bottom: 14px; }
-    .section-heading p, .section-intro { color: var(--muted); }
     .grid { display: grid; gap: 22px; }
     .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .card { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: 0 5px 20px rgba(0,0,0,.035); height: 100%; }
-    .card h3 { font-size: 1.08rem; margin-bottom: 10px; color: var(--black); }
-    .card p { margin-bottom: 0; color: var(--muted); font-size: .92rem; }
-    .icon { display: grid; place-items: center; width: 46px; height: 46px; background: #fbf4df; color: #7e5d12; border-radius: 12px; font-size: 1.25rem; margin-bottom: 18px; font-weight: 800; }
-    .soft { background: var(--soft); }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .split h2 { margin-bottom: 18px; }
-    .check-list { padding: 0; list-style: none; margin: 22px 0 0; }
-    .check-list li { padding: 9px 0 9px 30px; position: relative; }
-    .check-list li::before { content: "âœ“"; position: absolute; left: 0; top: 9px; color: #a17a1f; font-weight: 800; }
-    .stats { background: #171717; color: white; padding: 26px 0; }
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: center; }
-    .stat strong { display: block; color: var(--gold-light); font-size: 1.25rem; }
-    .stat span { color: #d2d2d2; font-size: .84rem; }
-    .profile { display: grid; grid-template-columns: 260px 1fr; gap: 34px; align-items: center; max-width: 900px; margin: auto; }
-    .profile-photo { width: 100%; max-height: 340px; object-fit: cover; object-position: center top; border-radius: var(--radius); border: 4px solid #f2e5bd; box-shadow: var(--shadow); }
-    .profile h3 { font-size: 1.45rem; margin-bottom: 4px; }
-    .profile .role { color: #8e6b1c; font-weight: 700; margin-bottom: 16px; }
-    .quote-box { background: #171717; color: white; padding: 34px; border-radius: var(--radius); border-left: 4px solid var(--gold); }
-    .quote-box h3 { color: var(--gold-light); margin-bottom: 12px; }
-    .quote-box p { color: #e2e2e2; margin-bottom: 12px; }
-    .quote-box p:last-child { margin-bottom: 0; }
-    .pill-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .pill { padding: 9px 15px; background: white; border: 1px solid var(--line); border-radius: 999px; font-size: .86rem; color: #4b4b4b; }
-    .cta { background: linear-gradient(120deg, #171717, #292318); color: white; text-align: center; }
-    .cta h2 { color: white; }
-    .cta p { max-width: 720px; margin: 0 auto 24px; color: #e0e0e0; }
-    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 26px; }
-    .contact-item { padding: 14px 0; border-bottom: 1px solid var(--line); }
-    .contact-item:last-child { border-bottom: 0; }
-    .contact-item strong { display: block; color: var(--black); margin-bottom: 4px; }
-    .contact-item a { overflow-wrap: anywhere; }
-    .socials { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-    .socials a { font-size: .86rem; font-weight: 600; color: #8a6819; }
-    footer { background: #0d0d0d; color: #d7d7d7; padding: 32px 0; font-size: .85rem; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    footer strong { color: var(--gold-light); }
-    .whatsapp { position: fixed; right: 20px; bottom: 20px; z-index: 999; background: #168b51; color: white; padding: 13px 17px; border-radius: 999px; font-weight: 700; font-size: .85rem; box-shadow: 0 8px 25px rgba(0,0,0,.2); }
-    .small-note { color: var(--muted); font-size: .85rem; }
-    @media (max-width: 920px) {
-      nav { gap: 12px; }
-      nav a { font-size: .76rem; }
-      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 760px) {
-      .nav-wrap { min-height: 72px; flex-wrap: wrap; padding: 10px 0; }
-      .menu-toggle { display: block; }
-      nav { display: none; width: 100%; padding: 8px 0 14px; justify-content: flex-start; }
-      nav.open { display: flex; }
-      nav a { font-size: .85rem; padding: 5px 0; }
-      .hero { padding: 68px 0; }
-      section { padding: 58px 0; }
-      .split, .contact-grid, .profile { grid-template-columns: 1fr; }
-      .profile-photo { max-width: 270px; }
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr; gap: 15px; }
-      .topbar-inner { justify-content: center; text-align: center; }
-    }
+    .card { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; height: 100%; }
+    footer { background: #111; color: #aaa; padding: 60px 0 30px; font-size: 0.9rem; border-top: 2px solid var(--gold); }
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>HR Consulting â€¢ Recruitment â€¢ Workforce Solutions</span>
-      <span><a href="tel:+2347036937363">+234 703 693 7363</a> &nbsp;|&nbsp; <a href="mailto:prinsoragroup@gmail.com">prinsoragroup@gmail.com</a></span>
+      <div>HR Consulting &bull; Recruitment &bull; Workforce Solutions</div>
+      <div>📞 +234 703 693 7363 | ✉️ prinsoragroup@gmail.com</div>
     </div>
   </div>
-
   <header>
     <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Prinsora Group home">
-        <img src="logo.png" alt="Prinsora Group logo">
-        <span class="brand-name">PRINSORA GROUP<span>ELEVATING STANDARDS</span></span>
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu â˜°</button>
-      <nav id="main-nav" aria-label="Main navigation">
-        <a href="#hr">HR Consulting</a>
-        <a href="#careers">Careers</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Other Services</a>
-        <a href="#products">Digital Products</a>
-        <a href="#leadership">Leadership</a>
+      <div class="brand">
+        <div class="brand-name">PRINSORA GROUP</div>
+      </div>
+      <nav>
+        <a href="#services">HR Consulting</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <span class="eyebrow">People. Performance. Progress.</span>
-          <h1>Human Resources Consulting.<br><span class="gold">Recruitment. Workforce Solutions.</span></h1>
-          <p>We help businesses attract the right talent, strengthen their workforce and improve organisational performance through professional HR consulting, recruitment and workforce support services.</p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="#hr">Explore HR Services</a>
-            <a class="btn btn-outline" href="#careers">Explore Careers</a>
-            <a class="btn btn-outline" href="#contact">Contact Us</a>
-          </div>
-          <p class="brand-note">Prinsora Group is the brand identity for Prinsora Integrated Services, with Prinsora HR Consulting Services as its primary service division, alongside other integrated business services.</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="stats">
-      <div class="container stats-grid">
-        <div class="stat"><strong>Talent & Recruitment</strong><span>Connecting employers with suitable candidates</span></div>
-        <div class="stat"><strong>HR Consulting</strong><span>Practical support for workplace and people needs</span></div>
-        <div class="stat"><strong>Integrated Services</strong><span>Additional support for business operations</span></div>
-      </div>
+  <section class="hero">
+    <div class="container">
+      <h1>Human Resources Consulting & Workforce Solutions.</h1>
+      <p>We help businesses attract the right talent and improve organisational performance.</p>
     </div>
-
-    <section id="hr">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Our Primary Service Division</span>
-          <h2>Prinsora HR Consulting Services</h2>
-          <p>People-focused solutions designed to help employers find suitable talent, support employees and manage workforce needs more effectively.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="card">
-            <div class="icon">01</div>
-            <h3>Recruitment & Talent Acquisition</h3>
-            <p>Support with candidate sourcing, screening, shortlisting and recruitment for individual employers and organisations.</p>
-          </article>
-          <article class="card">
-            <div class="icon">02</div>
-            <h3>HR Outsourcing & Workforce Support</h3>
-            <p>Workforce support services that help businesses address selected HR and staffing needs.</p>
-          </article>
-          <article class="card">
-            <div class="icon">03</div>
-            <h3>Training & Development</h3>
-            <p>Support for professional development, workplace readiness and employee capability building.</p>
-          </article>
-          <article class="card">
-            <div class="icon">04</div>
-            <h3>HR & Business Consulting</h3>
-            <p>Practical guidance on people-related processes and selected business support needs.</p>
-          </article>
-          <article class="card">
-            <div class="icon">05</div>
-            <h3>Job Placement Support</h3>
-            <p>Connecting job seekers with opportunities that align with their skills, experience and role requirements.</p>
-          </article>
-          <article class="card">
-            <div class="icon">06</div>
-            <h3>International Recruitment Support</h3>
-            <p>Recruitment support for opportunities with international reach, subject to role requirements and employer arrangements.</p>
-          </article>
-        </div>
-        <div style="text-align:center; margin-top:30px">
-          <a class="btn btn-primary" href="#contact">Discuss Your HR Needs</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="soft" id="industries">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Who We Support</span>
-          <h2>Industries & Clients</h2>
-          <p>We welcome enquiries from organisations and individuals seeking recruitment, HR and workforce support across different sectors.</p>
-        </div>
-        <div class="pill-list">
-          <span class="pill">Small & Medium-Sized Businesses</span>
-          <span class="pill">Corporate Organisations</span>
-          <span class="pill">Start-ups & Growing Businesses</span>
-          <span class="pill">Professional Services</span>
-          <span class="pill">Customer Service & Sales</span>
-          <span class="pill">Operations & Administration</span>
-          <span class="pill">Job Seekers</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="careers">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Careers & Opportunities</span>
-          <h2>Take the Next Step in Your Career</h2>
-          <p>Explore current openings and submit your application through the relevant application link. Applicants should review each role's requirements carefully before applying.</p>
-        </div>
-        <div class="grid grid-2">
-          <article class="card">
-            <div class="icon">â†—</div>
-            <h3>Remote Appointment Setter</h3>
-            <p>Applications are invited from candidates who communicate fluently in English, are coachable and can meet the role's working requirements. Applicants should have a laptop, reliable internet, a quiet workspace and backup power.</p>
-            <a class="btn btn-primary" href="https://forms.gle/ATJJMG8w3UzBaZnr8" target="_blank" rel="noopener noreferrer" style="margin-top:22px">Apply Now</a>
-          </article>
-          <article class="card">
-            <div class="icon">ï¼‹</div>
-            <h3>Future Opportunities</h3>
-            <p>We welcome professionals and job seekers to stay connected for suitable opportunities as they become available.</p>
-            <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=prinsoracareers@gmail.com" target="_blank" rel="noopener noreferrer">Send a Career Enquiry</a>
-          </article>
-        </div>
-        <p class="small-note" style="text-align:center;margin-top:20px">Prinsora HR Consulting Services supports recruitment and candidate screening. Final selection decisions are made by the hiring organisation.</p>
-      </div>
-    </section>
-
-    <section class="soft" id="about">
-      <div class="container split">
-        <div>
-          <span class="eyebrow">About Prinsora Group</span>
-          <h2>Integrated Services. People-Centred Approach.</h2>
-          <p>Prinsora Group is the brand identity for Prinsora Integrated Services. We focus on HR consulting and recruitment while maintaining a wider portfolio of business and operational support services.</p>
-          <p>Our approach is grounded in professionalism, clear communication and a practical understanding of the needs of employers, candidates and clients.</p>
-          <ul class="check-list">
-            <li>Recruitment and workforce support at the centre of our services.</li>
-            <li>Professional communication with employers and candidates.</li>
-            <li>Additional business support services under one brand identity.</li>
-          </ul>
-        </div>
-        <div class="quote-box">
-          <h3>Our Mission</h3>
-          <p>To deliver dependable people and business support services that help individuals and organisations move forward with confidence.</p>
-          <h3 style="margin-top:24px">Our Vision</h3>
-          <p>To build a trusted, service-driven brand recognised for professionalism, practical solutions and a commitment to elevating standards.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="why">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Why Prinsora</span>
-          <h2>Professional Support, Clear Communication</h2>
-          <p>We aim to make each engagement straightforward, respectful and focused on the needs of the client or candidate.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="card"><div class="icon">âœ“</div><h3>People-Focused</h3><p>We recognise the importance of matching role requirements with relevant skills, experience and workplace expectations.</p></article>
-          <article class="card"><div class="icon">âœ“</div><h3>Practical Approach</h3><p>We focus on clear processes and support that responds to the needs presented by each engagement.</p></article>
-          <article class="card"><div class="icon">âœ“</div><h3>Professional Standards</h3><p>We value respectful communication, confidentiality and responsible handling of recruitment interactions.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="soft" id="values">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">What Guides Us</span>
-          <h2>Our Core Values</h2>
-        </div>
-        <div class="pill-list">
-          <span class="pill">Professionalism</span>
-          <span class="pill">Integrity</span>
-          <span class="pill">Accountability</span>
-          <span class="pill">Respect</span>
-          <span class="pill">Service Excellence</span>
-          <span class="pill">Continuous Improvement</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="leadership">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Leadership</span>
-          <h2>Meet Our Group Leader</h2>
-        </div>
-        <div class="profile">
-          <img class="profile-photo" src="chairman.png" alt="Smart Oboson, Prinsora Group leader">
-          <div>
-            <h3>Smart Oboson</h3>
-            <p class="role">Executive Chairman / Group Managing Director, Prinsora Group</p>
-            <p>Smart Oboson leads Prinsora Group's service direction, with a focus on HR consulting, recruitment and workforce support alongside the group's wider integrated services.</p>
-            <p>Through Prinsora HR Consulting Services, he supports recruitment activities and people-focused business solutions.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="soft" id="message">
-      <div class="container">
-        <div class="quote-box">
-          <h3>A Message from the Group Leadership</h3>
-          <p>At Prinsora Group, we believe that people are central to organisational progress. Our commitment is to approach every engagement with professionalism, respect and a focus on practical value.</p>
-          <p>Whether we are supporting recruitment or providing other business services, our guiding principle remains the same: <strong>Elevating Standards.</strong></p>
-          <p><strong>Smart Oboson</strong><br>Executive Chairman / Group Managing Director, Prinsora Group</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Beyond HR Consulting</span>
-          <h2>Other Service Divisions</h2>
-          <p>Alongside our primary HR consulting and recruitment services, Prinsora Group provides additional business and operational support offerings.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="card"><div class="icon">01</div><h3>Facility Management</h3><p>Support for the coordination and upkeep of facilities and work environments.</p></article>
-          <article class="card"><div class="icon">02</div><h3>Cleaning & Sanitation</h3><p>Cleaning and sanitation support for selected residential and business needs.</p></article>
-          <article class="card"><div class="icon">03</div><h3>Fabric Care</h3><p>Fabric care services designed around everyday garment and textile care needs.</p></article>
-          <article class="card"><div class="icon">04</div><h3>Workforce Support & Outsourcing</h3><p>Workforce support options for organisations seeking assistance with staffing and operations.</p></article>
-          <article class="card"><div class="icon">05</div><h3>Property Care & Maintenance</h3><p>Support for property upkeep and routine maintenance requirements.</p></article>
-          <article class="card"><div class="icon">06</div><h3>Business Support Services</h3><p>Selected administrative and business support services to help clients manage operational needs.</p></article>
-          <article class="card"><div class="icon">07</div><h3>Prinsora Designs</h3><p>Creative and design support delivered under the Prinsora Group brand.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="soft" id="products">
-      <div class="container split">
-        <div>
-          <span class="eyebrow">Digital Products</span>
-          <h2>Digital Tools & Solutions</h2>
-          <p>Prinsora Group also explores digital products and technology-enabled solutions that support everyday business and service needs.</p>
-          <p class="small-note">For product availability and enquiries, please contact our team.</p>
-          <a class="btn btn-primary" href="#contact">Enquire About Digital Products</a>
-        </div>
-        <div class="card">
-          <h3>Prinsora Digital Initiatives</h3>
-          <p>Our digital initiatives sit alongside our people and business services as part of the wider Prinsora Group portfolio. Details are shared as individual products and services become available.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <span class="eyebrow">Let's Work Together</span>
-        <h2>Looking for Recruitment or HR Support?</h2>
-        <p>Tell us about your staffing, HR consulting or business support needs. We will direct your enquiry to the appropriate service area.</p>
-        <div class="button-row" style="justify-content:center">
-          <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=prinsoragroup@gmail.com" target="_blank" rel="noopener noreferrer">Email Our Team</a>
-          <a class="btn btn-outline" href="https://wa.me/2347036937363" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">Get in Touch</span>
-          <h2>Contact Prinsora Group</h2>
-          <p>For recruitment, HR consulting, careers and other service enquiries, contact us through the details below.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="card">
-            <div class="contact-item"><strong>Phone / WhatsApp</strong><a href="tel:+2347036937363">+234 703 693 7363</a></div>
-            <div class="contact-item"><strong>General Enquiries</strong><a href="mailto:prinsoragroup@gmail.com">prinsoragroup@gmail.com</a></div>
-            <div class="contact-item"><strong>Careers & Recruitment</strong><a href="mailto:prinsoracareers@gmail.com">prinsoracareers@gmail.com</a></div>
-            <div class="contact-item"><strong>Address</strong><span>12 Grace Pavilion Street, Phase 2, Jikwoyi, Abuja, Nigeria</span></div>
-            <div class="contact-item"><strong>Website</strong><a href="https://prinsoragroup.github.io" target="_blank" rel="noopener noreferrer">prinsoragroup.github.io</a></div>
-          </div>
-          <div class="card">
-            <h3>Connect With Us</h3>
-            <p>Follow Prinsora Group for service updates, career opportunities and business information.</p>
-            <div class="socials">
-              <a href="https://www.facebook.com/profile.php?id=61589783856213" target="_blank" rel="noopener noreferrer">Facebook</a>
-              <a href="https://www.instagram.com/prinsoragroup/" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://www.linkedin.com/company/prinsora-group/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-            <p class="small-note" style="margin-top:24px">Prinsora Group is the brand identity for Prinsora Integrated Services.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div><strong>PRINSORA GROUP</strong><br>Elevating Standards.</div>
-      <div>Powered by Prinsora Integrated Services.</div>
-      <div>Â© <span id="year"></span> Prinsora Group. All rights reserved.</div>
+  </section>
+  <footer id="contact">
+    <div class="container">
+      <p>&copy; 2026 Prinsora Group. All rights reserved.</p>
     </div>
   </footer>
-
-  <a class="whatsapp" href="https://wa.me/2347036937363" target="_blank" rel="noopener noreferrer" aria-label="Chat with Prinsora Group on WhatsApp">WhatsApp Us</a>
-
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('#main-nav');
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mainNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
